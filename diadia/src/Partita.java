@@ -8,17 +8,17 @@
  */
 
 public class Partita {
-	static final private int CFU_INIZIALI = 20;
 
 	private Labirinto labirinto;
 	private boolean finita;
+	private Giocatore giocatore;
 	private int cfu;
 
 	public Partita(){
 		labirinto = new Labirinto();
 		labirinto.creaStanze();
 		this.finita = false;
-		this.cfu = CFU_INIZIALI;
+		giocatore = new Giocatore();
 	}
 
 	public Labirinto getLabirinto() {
@@ -50,15 +50,16 @@ public class Partita {
 	 * Imposta la partita come finita
 	 *
 	 */
+	
 	public void setFinita() {
 		this.finita = true;
 	}
-
-	public int getCfu() {
-		return this.cfu;
+	
+	public void setGiocatore(Giocatore giocatore) {
+		this.giocatore = giocatore;
 	}
-
-	public void setCfu(int cfu) {
-		this.cfu = cfu;		
-	}	
+	
+	public Giocatore getGiocatore() {
+		return giocatore;
+	}
 }
