@@ -2,6 +2,7 @@ package it.uniroma3.diadia;
 
 import java.util.Scanner;
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -29,7 +30,8 @@ public class DiaDia {
 
 	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
 	static final private String[] elencoDirezioni = {"nord", "sud", "ovest", "est"};
-
+	static final private String[] prendiAttrezzo = {"prendi <nomeAttrezzo>"};
+	static final private String[] posaAttrezzo = {"posa <nomeAttrezzo>"};
 	private Partita partita;
 	
 	public DiaDia() {
@@ -61,6 +63,10 @@ public class DiaDia {
 				return true;
 			} else if (comandoDaEseguire.getNome().equals("vai"))
 				this.vai(comandoDaEseguire.getParametro());
+			else if (comandoDaEseguire.getNome().equals("prendi"))
+				this.prendi(comandoDaEseguire.getParametro());
+			else if (comandoDaEseguire.getNome().equals("posa"))
+				this.posa(comandoDaEseguire.getParametro());
 			else if (comandoDaEseguire.getNome().equals("aiuto"))
 				this.aiuto();
 			else
@@ -86,6 +92,11 @@ public class DiaDia {
 		System.out.println();
 		for(int i=0; i< elencoDirezioni.length; i++) 
 			System.out.print(elencoDirezioni[i]+" ");
+		System.out.println();		for(int i=0; i< prendiAttrezzo.length; i++) 
+			System.out.print(prendiAttrezzo[i]+" ");
+		System.out.println();
+		for(int i=0; i< posaAttrezzo.length; i++) 
+			System.out.print(posaAttrezzo[i]+" ");
 		System.out.println();
 	}
 
@@ -108,6 +119,19 @@ public class DiaDia {
 		System.out.println(partita.getLabirinto().getStanzaCorrente().getDescrizione());
 	}
 
+	private void prendi(String nomeAttrezzo) {
+		Attrezzo a = this.partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+		this.partita.getGiocatore().getBorsa().addAttrezzo(a);
+		this.partita.getLabirinto().getStanzaCorrente().removeAttrezzo(a);
+		System.out.println("Oggetto preso!");
+	}
+	private void posa(String nomeAttrezzo) {
+		Attrezzo a = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
+		this.partita.getLabirinto().getStanzaCorrente().addAttrezzo(a);
+		this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
+		System.out.println("Oggetto posato!");
+	}
+	
 	/**
 	 * Comando "Fine".
 	 */
