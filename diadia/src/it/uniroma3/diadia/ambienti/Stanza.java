@@ -158,6 +158,7 @@ public class Stanza {
 				attrezzoCercato = attrezzo;
 		}
 		return attrezzoCercato;	
+		aaa
 	}
 
 	/**
