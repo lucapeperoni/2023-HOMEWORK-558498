@@ -5,7 +5,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Labirinto {
 	private Stanza stanzaVincente;
-	private Stanza stanzaCorrente;
+	private Stanza stanzaIniziale;
 	
     /**
      * Crea tutte le stanze e le porte di collegamento
@@ -42,17 +42,16 @@ public class Labirinto {
 		atrio.addAttrezzo(osso);
 		
 		// il gioco comincia nell'atrio
-	    stanzaCorrente = atrio;  
+	    stanzaIniziale = atrio;  
 		stanzaVincente = biblioteca;
     }
     public Stanza getStanzaVincente() {
 		return stanzaVincente;
 	}
-	public void setStanzaCorrente(Stanza stanzaCorrente) {
-		this.stanzaCorrente = stanzaCorrente;
-	}
-
-	public Stanza getStanzaCorrente() {
-		return this.stanzaCorrente;
-	}
+    public Stanza getIngresso() {
+    	return stanzaIniziale;
+    }
+    public void setIngresso(Stanza stanzaIniziale) {
+    	this.stanzaIniziale = stanzaIniziale;
+    }
 }
