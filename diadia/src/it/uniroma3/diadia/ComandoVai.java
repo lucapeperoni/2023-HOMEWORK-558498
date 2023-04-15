@@ -17,7 +17,7 @@ public class ComandoVai implements Comando {
 		Stanza stanzaCorrente = partita.getStanzaCorrente();
 		Stanza prossimaStanza = null;
 		if(direzione==null) {
-			System.out.println("Dove vuoi andare?  Devi specificare una deirezione");
+			System.out.println("Dove vuoi andare?  Devi specificare una direzione");
 			return;
 		}
 		prossimaStanza = stanzaCorrente.getStanzaAdiacente(this.direzione);
