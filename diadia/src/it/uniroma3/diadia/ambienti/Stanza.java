@@ -168,6 +168,7 @@ public class Stanza {
 	 * @param nomeAttrezzo
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
+
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
 		if(attrezzo!=null){
 			int i = 0;
@@ -187,11 +188,11 @@ public class Stanza {
 	}
 
 
-	public String[] getDirezioni() {
-		String[] direzioni = new String[this.numeroStanzeAdiacenti];
-		for(int i=0; i<this.numeroStanzeAdiacenti; i++)
-			direzioni[i] = this.direzioni[i];
-		return direzioni;
-	}
+public String[] getDirezioni() {
+	String[] direzioni = new String[this.numeroStanzeAdiacenti];
+	for(int i=0; i<this.numeroStanzeAdiacenti; i++)
+		direzioni[i] = this.direzioni[i];
+	return direzioni;
+}
 
 }

@@ -15,12 +15,13 @@ class StanzaTest {
 	private static final String STANZA = "StanzaTest";
 	private static final String STANZA_ADIACENTE = "StanzaAdiacente";
 	private static final String NORD = "nord";
-
 	protected Stanza stanza;
+	private Attrezzo scudo;
 
 	@BeforeEach
 	void setUp() {
 		this.stanza=new Stanza(STANZA);
+		this.scudo = new Attrezzo("scudo", 2);
 	}
 	//Metodo di utilità
 	private Stanza creaStanzaEImpostaAdiacente (Stanza stanzaDiPartenza, String nomeStanzaAdiacente, String direzione) {
@@ -72,14 +73,7 @@ class StanzaTest {
 		stanza.addAttrezzo(attrezzo);
 		assertNull(stanza.getAttrezzo(""));
 	}
-
-	// controlla se il metodo aggiunge correttamente l'attrezzo
-	@Test
-	public void testAddAttrezzo() {
-		Attrezzo attrezzo = new Attrezzo(ATTREZZO,10);
-		assertEquals(true, stanza.addAttrezzo(attrezzo));
-	}
-
+	
 	// controlla se il metodo non aggiunge altri attrezzi se la stanza è piena
 	@Test
 	public void testAddAttrezzoArrayPieno() {
@@ -87,6 +81,21 @@ class StanzaTest {
 		for(int i = 0;i < MAX_ATTREZZI;i++)
 			stanza.addAttrezzo(attrezzo);
 		assertFalse(stanza.addAttrezzo(attrezzo));
+	}
+	
+	@Test
+    void testAddAttrezzo() {
+		assertEquals(true, stanza.addAttrezzo(scudo));
+	}
+
+	@Test 
+	void testRemoveAttrezzo(){
+		assertEquals(true, stanza.removeAttrezzo(scudo));
+	}
+
+	@Test 
+	void testHasAttrezzo(){
+		assertEquals (false, stanza.hasAttrezzo("scudo"));
 	}
 
 }
