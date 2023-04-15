@@ -1,8 +1,11 @@
 package it.uniroma3.diadia;
 
 import java.util.Scanner;
+
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -28,10 +31,6 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
-	static final private String[] elencoDirezioni = {"nord", "sud", "ovest", "est"};
-	static final private String[] prendiAttrezzo = {"prendi <nomeAttrezzo>"};
-	static final private String[] posaAttrezzo = {"posa <nomeAttrezzo>"};
 	private Partita partita;
 	public IOConsole io;
 
@@ -74,73 +73,6 @@ public class DiaDia {
 		}
 
 	// implementazioni dei comandi dell'utente:
-
-	/**
-	 * Stampa informazioni di aiuto.
-	 */
-	private void aiuto() {
-		for(int i=0; i< elencoComandi.length; i++) 
-			io.mostraMessaggio(elencoComandi[i]+" ");
-		io.mostraMessaggio("");
-		for(int i=0; i< elencoDirezioni.length; i++) 
-			io.mostraMessaggio(elencoDirezioni[i]+" ");
-		io.mostraMessaggio("");		
-		for(int i=0; i< prendiAttrezzo.length; i++) 
-			io.mostraMessaggio(prendiAttrezzo[i]+" ");
-		io.mostraMessaggio("");
-		for(int i=0; i< posaAttrezzo.length; i++) 
-			io.mostraMessaggio(posaAttrezzo[i]+" ");
-		io.mostraMessaggio("");
-	}
-
-	/**
-	 * Cerca di andare in una direzione. Se c'e' una stanza ci entra 
-	 * e ne stampa il nome, altrimenti stampa un messaggio di errore
-	 */
-	private void vai(String direzione) {
-		if(direzione==null)
-			io.mostraMessaggio("Dove vuoi andare ?");
-		Stanza prossimaStanza = null;
-		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
-		if (prossimaStanza == null)
-			io.mostraMessaggio("Direzione inesistente");
-		else {
-			this.partita.setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getGiocatore().getCfu();
-			this.partita.getGiocatore().setCfu(cfu--);
-		}
-		io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-	}
-
-	private void prendi(String nomeAttrezzo) {
-		Attrezzo a = this.partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
-		if(a != null) {
-		this.partita.getGiocatore().getBorsa().addAttrezzo(a);
-		this.partita.getStanzaCorrente().removeAttrezzo(a);
-		io.mostraMessaggio("Oggetto preso!");
-		}
-		else {
-			io.mostraMessaggio("L'oggetto selezionato non si trova in questa stanza!");
-		}
-	}
-	private void posa(String nomeAttrezzo) {
-		Attrezzo a = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
-		if(a!=null) {
-		this.partita.getStanzaCorrente().addAttrezzo(a);
-		this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
-		io.mostraMessaggio("Oggetto posato!");
-		}
-		else {
-			io.mostraMessaggio("L' oggetto non puoi posarlo perche non lo hai nella borsa!");
-		}
-	}
-
-	/**
-	 * Comando "Fine".
-	 */
-	private void fine() {
-		io.mostraMessaggio("Grazie di aver giocato!");  // si desidera smettere
-	}
 
 	public static void main(String[] argc) {
 		IOConsole console = new IOConsole();
