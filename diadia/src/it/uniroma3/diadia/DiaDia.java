@@ -64,13 +64,13 @@ public class DiaDia {
 		comandoDaEseguire.esegui(this.partita);
 		if (this.partita.vinta())
 
-		System.out.println("Hai vinto!");
-		if (!this.partita.giocatoreIsVivo())
+			System.out.println("Hai vinto!");
+		if (!this.partita.giocatoreIsVivo()) {
 
-		System.out.println("Hai esaurito i CFU...");
-
-		return this.partita.isFinita();
+			System.out.println("Hai esaurito i CFU...");
 		}
+		return this.partita.isFinita();
+	}
 
 	// implementazioni dei comandi dell'utente:
 

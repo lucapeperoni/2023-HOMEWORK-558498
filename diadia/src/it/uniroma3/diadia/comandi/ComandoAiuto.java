@@ -1,28 +1,36 @@
 package it.uniroma3.diadia.comandi;
 
-public class ComandoAiuto {
+import it.uniroma3.diadia.IOConsole;
+import it.uniroma3.diadia.Partita;
+public class ComandoAiuto implements Comando {
 	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
 	static final private String[] elencoDirezioni = {"nord", "sud", "ovest", "est"};
 	static final private String[] prendiAttrezzo = {"prendi <nomeAttrezzo>"};
 	static final private String[] posaAttrezzo = {"posa <nomeAttrezzo>"};
-
+	private IOConsole io; 
+	
 	/**
 	 * Stampa informazioni di aiuto.
 	 */
-	private void aiuto() {
+	
+	@Override
+	public void esegui(Partita partita) {
 		for(int i=0; i< elencoComandi.length; i++) 
-			io.mostraMessaggio(elencoComandi[i]+" ");
-		io.mostraMessaggio("");
+			System.out.println(elencoComandi[i]+" ");
+		System.out.println("");
 		for(int i=0; i< elencoDirezioni.length; i++) 
-			io.mostraMessaggio(elencoDirezioni[i]+" ");
-		io.mostraMessaggio("");		
+			System.out.println(elencoDirezioni[i]+" ");
+		System.out.println("");		
 		for(int i=0; i< prendiAttrezzo.length; i++) 
-			io.mostraMessaggio(prendiAttrezzo[i]+" ");
-		io.mostraMessaggio("");
+			System.out.println(prendiAttrezzo[i]+" ");
+		System.out.println("");
 		for(int i=0; i< posaAttrezzo.length; i++) 
-			io.mostraMessaggio(posaAttrezzo[i]+" ");
-		io.mostraMessaggio("");
+			System.out.println(posaAttrezzo[i]+" ");
+		System.out.println("");
 	}
 
-
+	@Override
+	public void setParametro(String parametro) {
+		
+	}
 }

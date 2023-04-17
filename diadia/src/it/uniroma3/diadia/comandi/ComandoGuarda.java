@@ -3,12 +3,19 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.IOConsole;
 
-public class ComandoGuarda {
+
+public class ComandoGuarda implements Comando {
 	private IOConsole io;
-	void guarda(Partita partita) {
-		io.mostraMessaggio("Stanza corrente: "+partita.getStanzaCorrente().getNome());
-		io.mostraMessaggio("Descrizione stanza: "+partita.getStanzaCorrente().getDescrizione());
-		io.mostraMessaggio("Borsa attuale: "+partita.getGiocatore().getBorsa().toString());
-		io.mostraMessaggio("CFU attuali: "+partita.getGiocatore().getCfu());
+	public void esegui(Partita partita) {
+		System.out.println("Stanza corrente: "+partita.getStanzaCorrente().getNome());
+		System.out.println("Descrizione stanza: "+partita.getStanzaCorrente().getDescrizione().toString());
+		System.out.println("Borsa attuale: "+partita.getGiocatore().getBorsa().toString());
+		System.out.println("CFU attuali: "+partita.getGiocatore().getCfu());
+	}
+
+	@Override
+	public void setParametro(String parametro) {
+		// TODO Auto-generated method stub
+		
 	}
 }

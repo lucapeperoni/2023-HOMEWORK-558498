@@ -26,6 +26,7 @@ public class Partita {
 		this.finita = false;
 		this.stanzaCorrente = this.labirinto.getIngresso();
 		giocatore = new Giocatore();
+		cfu = getGiocatore().getCfu();
 	}
 
 	public Labirinto getLabirinto() {
@@ -76,4 +77,8 @@ public class Partita {
 	public Stanza getStanzaCorrente() {
 		return this.stanzaCorrente;
 	}
-}
+
+	public boolean giocatoreIsVivo() {
+		return (cfu >0);
+		}
+	}
