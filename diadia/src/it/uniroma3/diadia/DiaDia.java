@@ -1,9 +1,6 @@
 package it.uniroma3.diadia;
 
-import java.util.Scanner;
 
-import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 
@@ -32,22 +29,21 @@ public class DiaDia {
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
 	private Partita partita;
-	public IOConsole io;
+	private IO io;
 
-	public DiaDia(IOConsole console) {
-		this.io = console;
-		this.partita = new Partita();
+	public DiaDia(IO io) {
+		this.io = io;
+		this.partita = new Partita(this.io);
 
 	}
 
+
 	public void gioca() {
 		String istruzione; 
-		Scanner scannerDiLinee;
 
-		io.mostraMessaggio(MESSAGGIO_BENVENUTO);
-		scannerDiLinee = new Scanner(System.in);		
+		io.mostraMessaggio(MESSAGGIO_BENVENUTO);		
 		do		
-			istruzione = scannerDiLinee.nextLine();
+			istruzione = this.io.leggiRiga();
 		while (!processaIstruzione(istruzione));
 	}   
 
@@ -75,7 +71,7 @@ public class DiaDia {
 	// implementazioni dei comandi dell'utente:
 
 	public static void main(String[] argc) {
-		IOConsole console = new IOConsole();
+		IO console = new IOConsole();
 		DiaDia gioco = new DiaDia(console);
 		gioco.gioca();
 	}
