@@ -8,11 +8,9 @@ import org.junit.Test;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class StanzaBloccataTest {
-	static final private String ATTREZZO_SBLOCCA_DIREZIONE = "chiave";
+	static final private String attrezzoSbloccante = "chiave";
 	static final private String DIREZIONE_BLOCCATA = "nord";
-	static final private String DESCRIZIONE_BLOCCATA = "La stanza Ã¨ bloccata.\nDirezione bloccata: "
-			+ DIREZIONE_BLOCCATA + ".\nServe un attrezzo particolare "
-			+ "per sbloccarla.\nAttrezzo per sbloccare la stanza: " + ATTREZZO_SBLOCCA_DIREZIONE;
+	static final private String DESCRIZIONE_BLOCCATA = "La stanza è bloccata.\\nDirezione bloccata: \"+ this.attrezzoSbloccante +\".\\nServe un attrezzo particolare \"+ \"per sbloccarla.\\nAttrezzo per sbloccare la stanza: \"+ this.attrezzoSbloccante";
 
 	private StanzaBloccata stanza;
 	private Attrezzo chiave;

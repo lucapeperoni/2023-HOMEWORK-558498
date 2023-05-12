@@ -8,7 +8,7 @@ import org.junit.Test;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class StanzaBuiaTest {
-	static final private String MESSAGGIO_OSCURATO = "qui c'Ã¨ un buio pesto";
+	static final private String MESSAGGIO_OSCURATO = "Qui c'è un buio pesto!";
 
 	private StanzaBuia stanza;
 	private StanzaBuia stanzaVuota;
@@ -25,14 +25,14 @@ public class StanzaBuiaTest {
 
 	@Test
 	public void testGetDescrizioneOscurata() {
-		this.stanza.addAttrezzo(osso);
+		assertTrue(this.stanza.addAttrezzo(osso));
 		assertEquals(MESSAGGIO_OSCURATO, this.stanza.getDescrizione());
 		assertEquals(MESSAGGIO_OSCURATO, this.stanzaVuota.getDescrizione());
 	}
 
 	@Test
 	public void testGetDescrizioneChiara() {
-		this.stanza.addAttrezzo(lanterna);
+		assertTrue(this.stanza.addAttrezzo(lanterna));
 		assertNotEquals(MESSAGGIO_OSCURATO, this.stanza.getDescrizione());
 	}
 

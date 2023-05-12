@@ -77,10 +77,19 @@ class StanzaTest {
 	// controlla se il metodo non aggiunge altri attrezzi se la stanza è piena
 	@Test
 	public void testAddAttrezzoArrayPieno() {
-		Attrezzo attrezzo = new Attrezzo("osso",10);
-		for(int i = 0;i < MAX_ATTREZZI;i++)
-			stanza.addAttrezzo(attrezzo);
-		assertFalse(stanza.addAttrezzo(attrezzo));
+		stanza.addAttrezzo( new Attrezzo("uno",11));
+		stanza.addAttrezzo( new Attrezzo("due",11));
+		stanza.addAttrezzo( new Attrezzo("tre",11));
+		stanza.addAttrezzo( new  Attrezzo("qtt",11));
+		stanza.addAttrezzo( new Attrezzo("cq",11));
+		stanza.addAttrezzo( new  Attrezzo("s",11));
+		stanza.addAttrezzo( new Attrezzo("stt",11));
+		stanza.addAttrezzo( new  Attrezzo("otto",11));
+		stanza.addAttrezzo( new Attrezzo("nv",11));
+		stanza.addAttrezzo( new Attrezzo("dc",11));
+		stanza.addAttrezzo( new Attrezzo("ciao",11));
+		assertFalse(stanza.hasAttrezzo("ciao"));
+		assertTrue(stanza.hasAttrezzo("stt"));
 	}
 	
 	@Test
